@@ -53,14 +53,14 @@
 
         // for debugging
         console.log(computerGuess);
-        
-       
+
+
 
 
     }
 
     console.log(wins);
-    
+
     computerLetter();
 
     document.onkeyup = function (event) {
@@ -72,8 +72,12 @@
             "<p>Guesses Left: " + guesses + "</p>" +
             "<p>Your Guesses so far: " + guessArray + "</p>";
 
+        guessArray.push(event.key);
         userGuess = event.key;
-        console.log(event.key);
+        console.log("Event key = " + event.key);
+        console.log("Computer guess = " + computerGuess);
+        console.log("UserGuess = " + userGuess);
+        console.log("guessArray = " + guessArray);
 
 
         if (computerGuess === userGuess) {
@@ -88,11 +92,13 @@
             document.querySelector("#game").innerHTML = htmlText;
 
         } else {
-            guessArray.push(event.key);
             guesses--;
             document.querySelector("#game").innerHTML = htmlText;
         }
 
+        console.log("Current guess number = " + guesses);
+        console.log("Current win number" + wins);
+        console.log("Current loss number" + losses);
 
     };
 </script>
