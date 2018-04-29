@@ -54,12 +54,14 @@
         // for debugging
         console.log(computerGuess);
         
-        document.querySelector("#game").innerHTML = htmlText;
+       
 
 
     }
 
     console.log(wins);
+    
+    computerLetter();
 
     document.onkeyup = function (event) {
 
@@ -71,16 +73,19 @@
             "<p>Your Guesses so far: " + guessArray + "</p>";
 
         userGuess = event.key;
+        console.log(event.key);
 
 
         if (computerGuess === userGuess) {
             wins++;
             reset();
+            document.querySelector("#game").innerHTML = htmlText;
 
 
         } else if (guesses <= 0) {
             losses++;
             reset();
+            document.querySelector("#game").innerHTML = htmlText;
 
         } else {
             guessArray.push(event.key);
