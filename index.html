@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Psychic Game</title>
+</head>
+
+
+<!-- need to change the html first
+ -->
+
+<body>
+
+    <div id="game">
+        <p>Guess what letter I'm thinking of</p>
+        <p id="winNumber">Wins: 0</p>
+        <p>Losses: 0</p>
+        <p>Guesses Left: 9 </p>
+        <p>Your Guesses so far:</p>
+    </div>
+
+
+
+</body>
+<script>
+    var wins = 0;
+    var losses = 0;
+    var guesses = 9;
+    var userGuess = "";
+    var guessArray = [];
+    var computerGuess = ""
+
+    var text = "";
+    var possible = "abcdefghijklmnopqrstuvwxyz";
+
+
+
+
+
+    function computerLetter() {
+        computerGuess = possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+
+    function reset() {
+        guesses = 9;
+        userGuess = "";
+        guessArray = [];
+        computerLetter();
+
+        // for debugging
+        console.log(computerGuess);
+        
+        document.querySelector("#game").innerHTML = htmlText;
+
+
+    }
+
+    console.log(wins);
+
+    document.onkeyup = function (event) {
+
+
+        var htmlText = "<p>Guess what letter I'm thinking of</p>" +
+            "<p>Wins: " + wins + "</p>" +
+            "<p>Losses: " + losses + "</p>" +
+            "<p>Guesses Left: " + guesses + "</p>" +
+            "<p>Your Guesses so far: " + guessArray + "</p>";
+
+        userGuess = event.key;
+
+
+        if (computerGuess === userGuess) {
+            wins++;
+            reset();
+
+
+        } else if (guesses <= 0) {
+            losses++;
+            reset();
+
+        } else {
+            guessArray.push(event.key);
+            guesses--;
+            document.querySelector("#game").innerHTML = htmlText;
+        }
+
+
+    };
+</script>
+
+</html>
