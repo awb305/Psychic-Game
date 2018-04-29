@@ -9,98 +9,29 @@
 </head>
 
 
-<!-- need to change the html first
- -->
-
 <body>
 
     <div id="game">
         <p>Guess what letter I'm thinking of</p>
-        <p id="winNumber">Wins: 0</p>
-        <p>Losses: 0</p>
-        <p>Guesses Left: 9 </p>
-        <p>Your Guesses so far:</p>
+        <p>Wins:
+            <span id="numberOfWins">0</span>
+        </p>
+        <p>Losses:
+            <span id="numberOfLosses"> 0</span>
+        </p>
+        <p>Guesses Left:
+            <span id="numberOfGuessesLeft">9</span>
+        </p>
+        <p>Your Guesses so far:
+            <span id="guessArray"> -- </span>
+        </p>
     </div>
 
 
 
+
 </body>
-<script>
-    var wins = 0;
-    var losses = 0;
-    var guesses = 9;
-    var userGuess = "";
-    var guessArray = [];
-    var computerGuess = ""
+<script src="assets/javascript/script.js"></script>
 
-    var text = "";
-    var possible = "abcdefghijklmnopqrstuvwxyz";
-
-
-
-
-
-    function computerLetter() {
-        computerGuess = possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-
-    function reset() {
-        guesses = 9;
-        userGuess = "";
-        guessArray = [];
-        computerLetter();
-
-        // for debugging
-        console.log(computerGuess);
-
-
-
-
-    }
-
-    console.log(wins);
-
-    computerLetter();
-
-    document.onkeyup = function (event) {
-
-
-        var htmlText = "<p>Guess what letter I'm thinking of</p>" +
-            "<p>Wins: " + wins + "</p>" +
-            "<p>Losses: " + losses + "</p>" +
-            "<p>Guesses Left: " + guesses + "</p>" +
-            "<p>Your Guesses so far: " + guessArray + "</p>";
-
-        guessArray.push(event.key);
-        userGuess = event.key;
-        console.log("Event key = " + event.key);
-        console.log("Computer guess = " + computerGuess);
-        console.log("UserGuess = " + userGuess);
-        console.log("guessArray = " + guessArray);
-
-
-        if (computerGuess === userGuess) {
-            wins++;
-            reset();
-            document.querySelector("#game").innerHTML = htmlText;
-
-
-        } else if (guesses <= 0) {
-            losses++;
-            reset();
-            document.querySelector("#game").innerHTML = htmlText;
-
-        } else {
-            guesses--;
-            document.querySelector("#game").innerHTML = htmlText;
-        }
-
-        console.log("Current guess number = " + guesses);
-        console.log("Current win number" + wins);
-        console.log("Current loss number" + losses);
-
-    };
-</script>
 
 </html>
